@@ -1,12 +1,19 @@
 package com.robrua.orianna.type.dto.matchlist;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.robrua.orianna.type.dto.OriannaDto;
+import com.robrua.orianna.type.dto.summoner.Summoner;
 
 @Entity
+@IdClass(MatchReferenceId.class)
 @Table(name = "matchreference")
 public class MatchReference extends OriannaDto {
     private static final long serialVersionUID = -3579776398026544389L;
@@ -15,7 +22,12 @@ public class MatchReference extends OriannaDto {
 
     @Id
     private Long matchId;
-
+     
+    @Id
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "summonerId", insertable=false, updatable=false )
+    private Summoner summonerId;
+    
     /*
      * (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
@@ -244,6 +256,16 @@ public class MatchReference extends OriannaDto {
      */
     public void setTimestamp(final Long timestamp) {
         this.timestamp = timestamp;
+    }
+    
+    
+
+    public Summoner getSummonerId() {
+        return summonerId;
+    }
+
+    public void setSummonerId(Summoner summonerId) {
+        this.summonerId = summonerId;
     }
 
     /*

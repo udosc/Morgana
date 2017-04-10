@@ -6,19 +6,26 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.robrua.orianna.type.dto.OriannaDto;
+import com.robrua.orianna.type.dto.summoner.Summoner;
 
 @Entity
+@IdClass(MatchDetailId.class)
 @Table(name = "matchdetail")
 public class MatchDetail extends OriannaDto {
     private static final long serialVersionUID = -5583614253740686126L;
     private Integer mapId;
     private Long matchCreation, matchDuration;
+    
     @Id
     private Long matchId;
 
@@ -36,6 +43,11 @@ public class MatchDetail extends OriannaDto {
     @OneToOne(cascade = CascadeType.ALL)
     private Timeline timeline;
 
+    @Id
+    @ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "summonerId", insertable=false, updatable=false )
+    private Summoner summonerId;
+    
     /*
      * (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
@@ -557,6 +569,16 @@ public class MatchDetail extends OriannaDto {
      */
     public void setTimeline(final Timeline timeline) {
         this.timeline = timeline;
+    }
+
+    
+    
+    public Summoner getSummonerId() {
+        return summonerId;
+    }
+
+    public void setSummonerId(Summoner summonerId) {
+        this.summonerId = summonerId;
     }
 
     /*

@@ -24,7 +24,7 @@ public class ParticipantStats extends OriannaDto {
     private long dbId;
 
     private Boolean winner, firstBloodAssist, firstBloodKill, firstInhibitorKill, firstInhibitorAssist, firstTowerAssist, firstTowerKill;
-
+    
     /*
      * (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)

@@ -1,10 +1,14 @@
 package com.robrua.orianna.type.dto.summoner;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.robrua.orianna.type.dto.OriannaDto;
+import com.robrua.orianna.type.dto.matchlist.MatchReference;
 
 @Entity
 @Table(name = "summoner")
@@ -16,6 +20,9 @@ public class Summoner extends OriannaDto {
     private Integer profileIconId;
 
     private Long revisionDate, summonerLevel;
+    
+    @OneToMany(mappedBy="summonerId")
+    private List<MatchReference> matchReferences;
 
     /*
      * (non-Javadoc)

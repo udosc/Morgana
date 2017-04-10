@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import com.robrua.orianna.type.dto.OriannaDto;
 
 @Entity
-@Table(name = "position")
+@Table(name = "match_position")
 public class Position extends OriannaDto {
     private static final long serialVersionUID = 6283012235679557217L;
     @Id
