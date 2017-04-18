@@ -35,7 +35,7 @@ public class Participant extends OriannaDto {
 
     @OneToOne(cascade = CascadeType.ALL)
     private ParticipantTimeline timeline;
-
+    
     /*
      * (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)

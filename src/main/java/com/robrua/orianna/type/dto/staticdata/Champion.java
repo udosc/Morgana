@@ -28,7 +28,11 @@ public class Champion extends OriannaDto {
     @Lob
     private List<String> allytips;
 
-    private String blurb, name, partype, title;
+    @Column(length = 1024)
+    private String blurb;
+    
+    private String name, partype, title;
+    
     @ElementCollection
     @CollectionTable(name = "champion_enemytip", joinColumns = @JoinColumn(name = "champion_id") )
     @Lob
